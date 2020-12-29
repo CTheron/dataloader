@@ -1,0 +1,25 @@
+{
+  "name": "dataloader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CTheron/dataloader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CTheron/dataloader/issues"
+  },
+  "homepage": "https://github.com/CTheron/dataloader#readme",
+  "dependencies": {
+    "dataloader": "^2.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
+}
