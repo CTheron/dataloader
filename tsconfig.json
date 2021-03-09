@@ -2,9 +2,12 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "sourceMap": true,
-    "esModuleInterop": true,
+    "importHelpers": true,
     "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "allowJs": true,
     "lib": [
       "esnext",
       "dom",

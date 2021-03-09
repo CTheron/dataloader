@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/CTheron/dataloader#readme",
   "dependencies": {
-    "dataloader": "^2.0.0"
+    "dataloader": "^2.0.0",
+    "lodash": "^4.17.20",
+    "rxjs": "^6.6.3"
   },
   "devDependencies": {
     "typescript": "^4.1.3"
