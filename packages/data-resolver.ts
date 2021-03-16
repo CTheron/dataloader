@@ -12,14 +12,19 @@ const getSchema = async () => {
   return api as unknown as ModelPropertyDTO
 }
 
-export async function dataResolver<E>(describe: IDescribe, row: E) {
+
+/** 数据恢复
+ * @param 字段类型
+ * @returns 每行的恢复数据
+ */
+export async function dataResolver(describe: IDescribe, row:any) {
     const { schema } = describe
-    const rt:any = { ...row }
+    const rt = { ...row }
     return Object.keys(rt).reduce(async (pre, next) => {
         if (schema[next]) {
             const { key, loader } = schema[next]
-            pre[next] = await Loader(loader)
-                .loadMany([...rt[next]])
+            pre[next] = (await Loader(loader)
+                .loadMany([...rt[next]]))
                 ?.map((el: any) => (key ? el[key] : el)) || rt[next]
         } else {
             pre[next] = rt[next]
