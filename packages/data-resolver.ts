@@ -19,15 +19,24 @@ const getSchema = async () => {
  */
 export async function dataResolver(describe: IDescribe, row:any) {
     const { schema } = describe
-    const rt = { ...row }
-    return Object.keys(rt).reduce(async (pre, next) => {
+    return Object.keys(row).reduce((pre, next) => {
         if (schema[next]) {
-            const { key, loader } = schema[next]
-            pre[next] = (await Loader(loader)
-                .loadMany([...rt[next]]))
-                ?.map((el: any) => (key ? el[key] : el)) || rt[next]
+            const { loader } = schema[next]
+            let mapArray = []
+            const toString = Object.prototype.toString
+            switch (toString.call(row[next])) {
+                case '[object Array]':
+                    mapArray = [...row[next]]
+                    break
+                default:
+                    mapArray = [row[next]]
+                    break
+            }
+            Loader[loader].loadMany(mapArray).then((e: any[]) => {
+                pre[next] = e
+            })
         } else {
-            pre[next] = rt[next]
+            pre[next] = row[next]
         }
         return pre
     }, {} as { [key: string]: any })
